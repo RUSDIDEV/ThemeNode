@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BLUE='\033[0;34m'.
+BLUE='\033[0;34m'
 NO_COLOR='\033[0m'
 
 if (( $EUID != 0 )); then
@@ -12,21 +12,21 @@ clear
 
 installTheme(){
     cd /var/www/
-    tar -cvf IceMinecraftTheme.tar.gz pterodactyl
+    tar -cvf ThemeNode.tar.gz pterodactyl
     echo "Installing theme..."
     cd /var/www/pterodactyl
-    rm -r IceMinecraftTheme
-    git clone https://github.com/Angelillo15/IceMinecraftTheme.git
-    cd IceMinecraftTheme
-    rm /var/www/pterodactyl/resources/scripts/IceMinecraftTheme.css
+    rm -r ThemeNode
+    git clone https://github.com/RUSDIDEV/ThemeNode.git
+    cd ThemeNode
+    rm /var/www/pterodactyl/resources/scripts/ThemeNode.css
     rm /var/www/pterodactyl/resources/scripts/index.tsx
     rm /var/www/pterodactyl/resources/scripts/components/server/console/Console.tsx
     mv resources/scripts/index.tsx /var/www/pterodactyl/resources/scripts/index.tsx
-    mv resources/scripts/IceMinecraftTheme.css /var/www/pterodactyl/resources/scripts/IceMinecraftTheme.css
+    mv resources/scripts/ThemeNode.css /var/www/pterodactyl/resources/scripts/ThemeNode.css
     mv resources/scripts/components/server/console/Console.tsx /var/www/pterodactyl/resources/scripts/components/server/console/Console.tsx
     cd /var/www/pterodactyl
 
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | sudo -E bash -
+    curl -o- https://raw.githubusercontent.com/RUSDIDEV/ThemeNode/refs/heads/main/install.sh | sudo -E bash -
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
@@ -60,33 +60,33 @@ installThemeQuestion(){
 }
 
 repair(){
-    bash <(curl https://raw.githubusercontent.com/Angelillo15/IceMinecraftTheme/main/repair.sh)
+    bash <(curl https://raw.githubusercontent.com/RUSDIDEV/ThemeNode/refs/heads/main/repair.sh)
 }
 
 restoreBackUp(){
     echo "Restoring backup..."
     cd /var/www/
-    tar -xvf IceMinecraftTheme.tar.gz
-    rm IceMinecraftTheme.tar.gz
+    tar -xvf ThemeNode.tar.gz
+    rm ThemeNode.tar.gz
 
     cd /var/www/pterodactyl
     yarn build:production
     sudo php artisan optimize:clear
 }
-                                                                                                                           
-printf "${blue} ____       _____        ______          _________________  ____   ____      ______        ______  _______        ______    \n"
-printf "${blue}|    |  ___|\    \   ___|\     \        /                 \|    | |    | ___|\     \      |      \/       \   ___|\     \   \n"
-printf "${blue}|    | /    /\    \ |     \     \       \______     ______/|    | |    ||     \     \    /          /\     \ |     \     \  \n"
-printf "${blue}|    ||    |  |    ||     ,_____/|         \( /    /  )/   |    |_|    ||     ,_____/|  /     /\   / /\     ||     ,_____/| \n"
-printf "${blue}|    ||    |  |____||     \--'\_|/          ' |   |   '    |    .-.    ||     \--'\_|/ /     /\ \_/ / /    /||     \--'\_|/ \n"
-printf "${blue}|    ||    |   ____ |     /___/|              |   |        |    | |    ||     /___/|  |     |  \|_|/ /    / ||     /___/|   \n"
-printf "${blue}|    ||    |  |    ||     \____|\            /   //        |    | |    ||     \____|\ |     |       |    |  ||     \____|\  \n"
-printf "${blue}|____||\ ___\/    /||____ '     /|          /___//         |____| |____||____ '     /||\____\       |____|  /|____ '     /| \n"
-printf "${blue}|    || |   /____/ ||    /_____/ |         |    |          |    | |    ||    /_____/ || |    |      |    | / |    /_____/ | \n"
-printf "${blue}|____| \|___|    | /|____|     | /         |____|          |____| |____||____|     | / \|____|      |____|/  |____|     | / \n"
-printf "${blue}  \(     \( |____|/   \( |_____|/            \(              \(     )/    \( |_____|/     \(          )/       \( |_____|/  \n"
-printf "${blue}   '      '   )/       '    )/                '               '     '      '    )/         '          '         '    )/     \n"
-printf "${blue}              '             '                                                   '                                    '      \n"
+
+printf "${BLUE} ____       _____        ______          _________________  ____   ____      ______        ______  _______        ______    \n"
+printf "${BLUE}|    |  ___|\    \   ___|\     \        /                 \|    | |    | ___|\     \      |      \/       \   ___|\     \   \n"
+printf "${BLUE}|    | /    /\    \ |     \     \       \______     ______/|    | |    ||     \     \    /          /\     \ |     \     \  \n"
+printf "${BLUE}|    ||    |  |    ||     ,_____/|         \( /    /  )/   |    |_|    ||     ,_____/|  /     /\   / /\     ||     ,_____/| \n"
+printf "${BLUE}|    ||    |  |____||     \--'\_|/          ' |   |   '    |    .-.    ||     \--'\_|/ /     /\ \_/ / /    /||     \--'\_|/ \n"
+printf "${BLUE}|    ||    |   ____ |     /___/|              |   |        |    | |    ||     /___/|  |     |  \|_|/ /    / ||     /___/|   \n"
+printf "${BLUE}|    ||    |  |    ||     \____|\            /   //        |    | |    ||     \____|\ |     |       |    |  ||     \____|\  \n"
+printf "${BLUE}|____||\ ___\/    /||____ '     /|          /___//         |____| |____||____ '     /||\____\       |____|  /|____ '     /| \n"
+printf "${BLUE}|    || |   /____/ ||    /_____/ |         |    |          |    | |    ||    /_____/ || |    |      |    | / |    /_____/ | \n"
+printf "${BLUE}|____| \|___|    | /|____|     | /         |____|          |____| |____||____|     | / \|____|      |____|/  |____|     | / \n"
+printf "${BLUE}  \(     \( |____|/   \( |_____|/            \(              \(     )/    \( |_____|/     \(          )/       \( |_____|/  \n"
+printf "${BLUE}   '      '   )/       '    )/                '               '     '      '    )/         '          '         '    )/     \n"
+printf "${BLUE}              '             '                                                   '                                    '      \n"
 echo ""
 echo "Copyright (c) 2022 Angelillo15 | angelillo15.es"
 echo "This program is free software: you can redistribute it and/or modify"
